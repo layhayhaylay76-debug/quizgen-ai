@@ -1,1 +1,14 @@
 
+{
+  "name": "quizgen-ai",
+  "version": "1.0.0",
+  "description": "AI-powered quiz generator",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
+
