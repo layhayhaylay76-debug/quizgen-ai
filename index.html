@@ -75,15 +75,6 @@ function render(){
  $('results').scrollIntoView({behavior:'smooth',block:'start'});
 }
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-$('generate').onclick=()=>{
- let text=$('source').value.trim(),topic=$('topic').value.trim();
- if(!text&&!topic){alert('Please enter a topic or paste some study material first.');return;}
- $('generate').disabled=true;$('generate').textContent='Generating...';
- setTimeout(()=>{questions=makeQuestions(text,topic,Number($('amount').value),$('type').value);answers={};$('generate').disabled=false;$('generate').textContent='✦ Generate questions';
- if(!questions.length){alert('Please add a longer paragraph or a topic.');return;}render();},350);
-};
-$('submit').onclick=()=>{
- 
 $('generate').onclick = async () => {
   let text = $('source').value.trim();
   let topic = $('topic').value.trim();
