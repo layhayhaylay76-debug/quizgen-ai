@@ -83,10 +83,54 @@ $('generate').onclick=()=>{
  if(!questions.length){alert('Please add a longer paragraph or a topic.');return;}render();},350);
 };
 $('submit').onclick=()=>{
- if(!questions.length)return;let score=0,total=0;
- questions.forEach((q,i)=>{if(q.opts.length){total++;let card=$('quiz').children[i];card.querySelectorAll('.option').forEach((b,j)=>{b.disabled=true;if(j===q.correct)b.classList.add('correct');if(answers[i]===j&&j!==q.correct)b.classList.add('wrong');});if(answers[i]===q.correct)score++;$('why'+i).style.display='block';}});
- $('scorebox').style.display='block';$('score').textContent=total?score+' / '+total:'Review your written answers';$('feedback').textContent=total?(score===total?'Excellent work!':score/total>=.6?'Good effort. Review the explanations for anything you missed.':'Keep practising — reread your material and try again.'):'Short-answer questions are for self-review; compare your responses with your notes.';$('scorebox').scrollIntoView({behavior:'smooth',block:'center'});
+ 
+$('generate').onclick = async () => {
+  let text = $('source').value.trim();
+  let topic = $('topic').value.trim();
+
+  if (!text && !topic) {
+    alert('Please enter a topic or paragraph first.');
+    return;
+  }
+
+  const btn = $('generate');
+  btn.disabled = true;
+  btn.textContent = 'Generating with AI...';
+
+  try {
+    const response = await fetch('/api/generate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        topic: topic,
+        source: text,
+        type: $('type').value,
+        difficulty: $('difficulty').value,
+        amount: Number($('amount').value)
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || 'AI generation failed.');
+    }
+
+    if (!Array.isArray(data.questions) || !data.questions.length) {
+      throw new Error('No questions were generated.');
+    }
+
+    questions = data.questions;
+    answers = {};
+    render();
+
+  } catch (error) {
+    alert(error.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '✦ Generate questions';
+  }
 };
-$('retry').onclick=()=>{$('generate').click();};
-$('print').onclick=()=>window.print();
-</script></body></html>
+ 
