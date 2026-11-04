@@ -70,11 +70,11 @@ Rules:
     const data = await response.json();
 
     if (!response.ok) {
-      console.error(data);
-      return res.status(502).json({
-        error: "Gemini could not generate questions. Check your API settings."
-      });
-    }
+  console.error("Gemini API error:", data);
+  return res.status(502).json({
+    error: `Gemini API error (${response.status}): ${data.error?.message || JSON.stringify(data)}`
+  });
+            }
 
     const resultText = data.candidates?.[0]?.content?.parts?.[0]?.text;
 
