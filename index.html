@@ -27,12 +27,13 @@ label{display:block;font-size:13px;font-weight:750;margin:17px 0 8px}textarea,in
 <label for="topic">Topic (optional)</label><input id="topic" placeholder="e.g. Photosynthesis, Newton's laws, C programming">
 <label for="source">Your paragraph or study material</label><textarea id="source" placeholder="Paste a paragraph, notes or an explanation here...&#10;&#10;Tip: For better questions, paste 3–10 sentences with clear facts."></textarea><div class="hint" id="count">0 characters</div>
 <div class="row"><div><label for="type">Question type</label><select id="type"><option value="mcq">Multiple choice (MCQ)</option><option value="tf">True / False</option><option value="short">Short answer prompts</option></select></div><div><label for="difficulty">Difficulty</label><select id="difficulty"><option>Easy</option><option selected>Medium</option><option>Hard</option></select></div></div>
-<div class="row"><div><label for="amount">Number of questions</label><select id="amount"><option>5</option><option selected>10</option><option>15</option></select></div><div><label for="mode">Generation mode</label><select id="mode"><option value="demo">Demo mode</option></select></div></div>
-<button class="btn full" id="generate">✦ Generate questions</button><div class="hint">Demo mode creates practice questions in your browser. Connect an AI API for more natural, content-aware questions.</div>
-</section>
-<aside>
+<div class="row"><div><label for="amount">Number of questions</label><select id="amount"><option>5</option><option selected>10</option><option>15</option></select></div><div><label for="mode">Generation mode</label><select id="mode"><option value="ai" selected>✦ AI Mode (Gemini)</option></select></div>
+ 
 <div class="sidebox" id="how"><h3>Learn smarter, not harder.</h3><p>QuizGen helps turn reading into active recall — a useful way to practise what you've learned.</p><div class="steps"><div class="step"><div class="num">1</div><div><strong>Paste your content</strong><span>Enter a topic or add a paragraph from your notes.</span></div></div><div class="step"><div class="num">2</div><div><strong>Customise your quiz</strong><span>Choose the question format, difficulty and quantity.</span></div></div><div class="step"><div class="num">3</div><div><strong>Practise and review</strong><span>Answer questions and see your result instantly.</span></div></div></div></div>
-<div class="tip"><strong>💡 Project note</strong><br>This is a working frontend prototype. The demo generator uses templates and extracted terms; it does not call a live AI model. A secure backend and AI API connection can be added as the next development step.</div>
+<div class="project-note">
+  💡 QuizGen AI uses an AI-powered backend to generate questions
+  from your topics and study materials.
+</div>
 </aside></div>
 <section id="results"><div class="resulthead"><div><h2 style="margin:0">Your generated quiz</h2><div class="hint" id="quizmeta"></div></div><span class="pill">READY TO PRACTISE</span></div><div id="quiz"></div><div class="actions"><button class="btn" id="submit">Submit answers</button><button class="btn secondary" id="retry">Generate another set</button><button class="btn secondary" id="print">Print quiz</button></div><div class="panel" id="scorebox" style="display:none;margin-top:16px"><div class="hint">YOUR RESULT</div><div class="score" id="score"></div><p id="feedback" class="sub" style="margin:4px 0 0"></p></div></section>
 <footer>QuizGen AI · A student project prototype · Learn, practise, improve.</footer>
