@@ -82,7 +82,7 @@ for (const model of models) {
 
   if (response.status !== 503 && response.status !== 429) break;
 }
-    const data = await response.json();
+    
 
     if (!response.ok) {
   console.error("Gemini API error:", data);
