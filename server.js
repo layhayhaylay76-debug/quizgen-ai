@@ -55,7 +55,7 @@ Rules:
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "x-goog-api-key": process.env.GEMINI_API_KEY
+          "x-goog-api-key": process.env.Quiz_gen_AI
         },
         body: JSON.stringify({
           contents: [{ parts: [{ text: prompt }] }],
